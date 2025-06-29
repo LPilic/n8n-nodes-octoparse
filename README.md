@@ -1,112 +1,108 @@
-# @devlikeapro/n8n-nodes-petstore
+# n8n-nodes-octoparse
 
-![n8n logo](n8n.png)
+![Octoparse + n8n](images/screenshot.png)
 
-Example (Template) project for [**Petstore OpenAPI spec**](https://petstore3.swagger.io/)
-using [**devlikeapro/n8n-openapi-node**](https://github.com/devlikeapro/n8n-openapi-node)
+**n8n-nodes-octoparse** is a community node for [n8n](https://n8n.io/) that allows you to automate and orchestrate your [Octoparse](https://www.octoparse.com/) web scraping workflows directly from n8n. This node provides full access to the Octoparse API, including task management, cloud extraction, and data retrieval.
 
-![screenshot](./images/screenshot.png)
+---
 
-<!-- toc -->
+## Features
 
-- [Run Petstore n8n node locally](#run-petstore-n8n-node-locally)
-  * [NodeJS](#nodejs)
-  * [Install n8n](#install-n8n)
-  * [Start n8n](#start-n8n)
-  * [Build and link the project](#build-and-link-the-project)
-  * [Add node to n8n](#add-node-to-n8n)
-  * [Start n8n again](#start-n8n-again)
-  * [Add Petstore Node to new workflow](#add-petstore-node-to-new-workflow)
-- [Modify Project](#modify-project)
-  * [Test Project Locally](#test-project-locally)
-  * [Publish project](#publish-project)
+- **Task Management**: List, copy, move, and search Octoparse tasks and task groups.
+- **Cloud Extraction**: Start/stop tasks, manage subtasks, and check extraction status.
+- **Data Access**: Retrieve scraped data by offset or batch, mark data as exported, and remove data.
+- **Authentication**: Securely connect to Octoparse using your credentials and automatic token handling.
+- **n8n UX**: Clean, grouped UI with resource/operation dropdowns and context-sensitive fields.
 
-<!-- tocstop -->
+---
 
-# Run Petstore n8n node locally
-Before start modifying the project, we kindly recommend
-to run the Petstore locally.
+## Installation
 
-## NodeJS
-Make sure you're using Node.js > 20 (we're using [nvm](https://github.com/nvm-sh/nvm)):
+### Via npm
+
 ```bash
-nvm install v22.8
-nvm use v22.8
+npm install n8n-nodes-octoparse
 ```
 
-## Install n8n 
-```bash
-npm install n8n -g
-```
+### Manual (for development)
 
-## Start n8n
 ```bash
-n8n --version
-n8n start
-```
-Open [http://localhost:5678](http://localhost:5678) in your browser and configure it
-
-## Build and link the project
-```bash
+git clone https://github.com/LPilic/n8n-nodes-octoparse.git
+cd n8n-nodes-octoparse
 npm install
-npm run test
 npm run build
 npm link
 ```
 
-## Add node to n8n
-```bash
-cd ~/.n8n
-mkdir -p custom
-cd custom
-npm init # press Enter for all questions
-npm link @devlikeapro/n8n-nodes-petstore
-```
-
-## Start n8n again
-```bash
-n8n start
-```
-
-## Add Petstore Node to new workflow
-Find `Petstore` in the node list and add it to your workflow
-
-![workflow](./images/workflow.png)
-![screenshot](./images/screenshot.png)
-
-# Modify Project
-Now you're ready to start building your n8n community node!
-1. Place your `openapi.json` in `nodes/{YourNode}`
-2. Replace your project logo in `logo.svg`
-3. Rename all `Petstore` matches to `YourNode` 
-4. Rename all `petstore` matches to `yournode`
-5. Replace all `devlikeapro` to `{yourgithubname}`
-
-## Test Project Locally
+Then, in your n8n custom nodes directory:
 
 ```bash
-npm install
-npm run test
-npm run build
-npm link
+cd ~/.n8n/custom
+npm init # if you haven't already
+npm link n8n-nodes-octoparse
 ```
 
-Add node to n8n:
-```bash
-cd ~/.n8n
-mkdir -p custom
-cd custom
-npm init # press Enter for all questions
-npm link @devlikeapro/n8n-nodes-petstore
-```
+Restart n8n and search for "Octoparse" in the node list.
 
-Start n8n:
-```bash
-n8n start
-```
+---
 
-## Publish project
-1. Add your `NPM_TOKEN` in GitHub Actions
-2. Push change
-3. Create a new GitHub Release, `1.0.0` in your project
-4. Install your node in n8n: `@{yourgithubname}/n8n-nodes-{yournode}`
+## Usage
+
+1. **Add the Octoparse node** to your n8n workflow.
+2. **Configure authentication**: Enter your Octoparse username and password in the credentials section.
+3. **Select a resource**: Choose between Tasks, Cloud Extraction, or Data.
+4. **Choose an operation**: The available operations will update based on the selected resource.
+5. **Fill in required fields**: Only relevant fields for your chosen operation will be shown.
+6. **Execute the workflow**: The node will interact with the Octoparse API and return the results in a structured format.
+
+### Example: Get Data by Offset
+
+- Resource: `Data`
+- Operation: `Get Data by Offset`
+- Fill in Task ID, Offset, and Size.
+- The response will include the data array, offset, total, and requestId as returned by Octoparse.
+
+---
+
+## Screenshots
+
+![Node UI](images/screenshot.png)
+![Workflow Example](images/workflow.png)
+
+---
+
+## Development
+
+1. Clone the repo and install dependencies:
+    ```bash
+    git clone https://github.com/LPilic/n8n-nodes-octoparse.git
+    cd n8n-nodes-octoparse
+    npm install
+    ```
+2. Run tests and build:
+    ```bash
+    npm run test
+    npm run build
+    ```
+3. Link the node into your n8n custom directory as shown above.
+
+---
+
+## Contributing
+
+Contributions, issues, and feature requests are welcome!  
+Feel free to check [issues page](https://github.com/LPilic/n8n-nodes-octoparse/issues) or submit a pull request.
+
+---
+
+## License
+
+[MIT](LICENSE.md)
+
+---
+
+## Links
+
+- [Octoparse API Documentation](https://openapi.octoparse.com/)
+- [n8n Documentation](https://docs.n8n.io/)
+- [GitHub Repository](https://github.com/LPilic/n8n-nodes-octoparse)
