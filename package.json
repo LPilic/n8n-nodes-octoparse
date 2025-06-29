@@ -1,5 +1,5 @@
 {
-  "name": "@devlikeapro/n8n-nodes-petstore",
+  "name": "n8n-nodes-octoparse",
   "version": "1.0.0",
   "description": "n8n node to connect with Petstore",
   "keywords": [
@@ -8,12 +8,12 @@
   "license": "MIT",
   "homepage": "",
   "author": {
-    "name": "Devlikapro",
-    "email": "admin@devlike.pro"
+    "name": "LPilic",
+    "email": "luka@pilic.work"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/devlikeapro/n8n-nodes-petstore.git"
+    "url": "https://github.com/devlikeapro/n8n-nodes-octoparse.git"
   },
   "engines": {
     "node": ">=18.10",
