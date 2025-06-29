@@ -1,7 +1,5 @@
 # n8n-nodes-octoparse
 
-![Octoparse + n8n](images/screenshot.png)
-
 **n8n-nodes-octoparse** is a community node for [n8n](https://n8n.io/) that allows you to automate and orchestrate your [Octoparse](https://www.octoparse.com/) web scraping workflows directly from n8n. This node provides full access to the Octoparse API, including task management, cloud extraction, and data retrieval.
 
 ---
@@ -61,13 +59,6 @@ Restart n8n and search for "Octoparse" in the node list.
 - Operation: `Get Data by Offset`
 - Fill in Task ID, Offset, and Size.
 - The response will include the data array, offset, total, and requestId as returned by Octoparse.
-
----
-
-## Screenshots
-
-![Node UI](images/screenshot.png)
-![Workflow Example](images/workflow.png)
 
 ---
 
