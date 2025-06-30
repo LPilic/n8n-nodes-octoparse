@@ -1,6 +1,6 @@
 {
   "name": "n8n-nodes-octoparse",
-  "version": "1.0.4",
+  "version": "1.0.6",
   "description": "n8n node to connect with Octoparse",
   "keywords": [
     "n8n-community-node-package"
@@ -35,10 +35,10 @@
   "n8n": {
     "n8nNodesApiVersion": 1,
     "credentials": [
-      "credentials/OctoparseApi.credentials.js"
+      "dist/credentials/OctoparseApi.credentials.js"
     ],
     "nodes": [
-      "nodes/Octoparse/Octoparse.node.js"
+      "dist/nodes/Octoparse/Octoparse.node.js"
     ]
   },
   "devDependencies": {
