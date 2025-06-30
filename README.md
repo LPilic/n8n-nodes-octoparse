@@ -65,15 +65,15 @@ Restart n8n and search for "Octoparse" in the node list.
 ## Development
 
 1. Clone the repo and install dependencies:
-    ```bash
+```bash
     git clone https://github.com/LPilic/n8n-nodes-octoparse.git
     cd n8n-nodes-octoparse
     npm install
     ```
 2. Run tests and build:
-    ```bash
-    npm run test
-    npm run build
+```bash
+npm run test
+npm run build
     ```
 3. Link the node into your n8n custom directory as shown above.
 

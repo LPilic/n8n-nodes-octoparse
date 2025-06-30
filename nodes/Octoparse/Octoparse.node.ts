@@ -233,8 +233,8 @@ export class Octoparse implements INodeType {
                                 name: 'value',
                                 type: 'string',
                                 default: '',
-                            },
-                        ],
+            },
+        ],
                     },
                 ],
                 default: {},
@@ -388,7 +388,7 @@ export class Octoparse implements INodeType {
                     });
                     returnData.push({ json: indexedObj });
                 } else {
-                    returnData.push({ json: response });
+                    returnData.push({ json: response.data || response });
                 }
             }
             if (operation === 'copyTask') {
@@ -411,7 +411,7 @@ export class Octoparse implements INodeType {
                     });
                     returnData.push({ json: indexedObj });
                 } else {
-                    returnData.push({ json: response });
+                    returnData.push({ json: response.data || response });
                 }
             }
             if (operation === 'moveTaskToGroup') {
@@ -434,7 +434,7 @@ export class Octoparse implements INodeType {
                     });
                     returnData.push({ json: indexedObj });
                 } else {
-                    returnData.push({ json: response });
+                    returnData.push({ json: response.data || response });
                 }
             }
             if (operation === 'searchTask') {
@@ -456,7 +456,7 @@ export class Octoparse implements INodeType {
                     });
                     returnData.push({ json: indexedObj });
                 } else {
-                    returnData.push({ json: response });
+                    returnData.push({ json: response.data || response });
                 }
             }
         }
@@ -485,7 +485,7 @@ export class Octoparse implements INodeType {
                     });
                     returnData.push({ json: indexedObj });
                 } else {
-                    returnData.push({ json: response });
+                    returnData.push({ json: response.data || response });
                 }
             }
             if (operation === 'cloudTaskStatusV2') {
@@ -512,7 +512,7 @@ export class Octoparse implements INodeType {
                     });
                     returnData.push({ json: indexedObj });
                 } else {
-                    returnData.push({ json: response });
+                    returnData.push({ json: response.data || response });
                 }
             }
             if (operation === 'cloudextractionStart') {
@@ -528,16 +528,7 @@ export class Octoparse implements INodeType {
                     body: { taskId },
                     json: true,
                 });
-                if (Array.isArray(response.data)) {
-                    // Transform array to object with index keys
-                    const indexedObj: Record<string, any> = {};
-                    response.data.forEach((item: any, idx: number) => {
-                        indexedObj[idx] = item;
-                    });
-                    returnData.push({ json: indexedObj });
-                } else {
-                    returnData.push({ json: response });
-                }
+                returnData.push({ json: response.data || response });
             }
             if (operation === 'cloudextractionStop') {
                 const taskId = this.getNodeParameter('cloudTaskId', 0) as string;
@@ -560,7 +551,7 @@ export class Octoparse implements INodeType {
                     });
                     returnData.push({ json: indexedObj });
                 } else {
-                    returnData.push({ json: response });
+                    returnData.push({ json: response.data || response });
                 }
             }
             if (operation === 'cloudextractionGetSubtasks') {
@@ -584,7 +575,7 @@ export class Octoparse implements INodeType {
                     });
                     returnData.push({ json: indexedObj });
                 } else {
-                    returnData.push({ json: response });
+                    returnData.push({ json: response.data || response });
                 }
             }
             if (operation === 'cloudextractionStartSubtasks') {
@@ -593,7 +584,7 @@ export class Octoparse implements INodeType {
                 const subTaskIds = (subTaskIdsRaw.subTaskId || []).map((s: any) => s.value);
                 const response = await this.helpers.httpRequest({
                     method: 'POST',
-                    url: `${baseUrl}/cloudextraction/subtasks{start}`,
+                    url: `${baseUrl}/cloudextraction/subtasks/start`,
                     headers: {
                         'Authorization': `Bearer ${accessToken}`,
                         'Content-Type': 'application/json',
@@ -610,7 +601,7 @@ export class Octoparse implements INodeType {
                     });
                     returnData.push({ json: indexedObj });
                 } else {
-                    returnData.push({ json: response });
+                    returnData.push({ json: response.data || response });
                 }
             }
             if (operation === 'cloudextractionStopSubtasks') {
@@ -619,7 +610,7 @@ export class Octoparse implements INodeType {
                 const subTaskIds = (subTaskIdsRaw.subTaskId || []).map((s: any) => s.value);
                 const response = await this.helpers.httpRequest({
                     method: 'POST',
-                    url: `${baseUrl}/cloudextraction/subtasks{stop}`,
+                    url: `${baseUrl}/cloudextraction/subtasks/stop`,
                     headers: {
                         'Authorization': `Bearer ${accessToken}`,
                         'Content-Type': 'application/json',
@@ -636,7 +627,7 @@ export class Octoparse implements INodeType {
                     });
                     returnData.push({ json: indexedObj });
                 } else {
-                    returnData.push({ json: response });
+                    returnData.push({ json: response.data || response });
                 }
             }
         }
@@ -654,7 +645,7 @@ export class Octoparse implements INodeType {
                         'Accept': 'application/json',
                     },
                 });
-                returnData.push({ json: response });
+                returnData.push({ json: response.data || response });
             }
             if (operation === 'getDataFromBatchByOffset') {
                 const taskId = this.getNodeParameter('dataTaskId', 0) as string;
@@ -670,7 +661,7 @@ export class Octoparse implements INodeType {
                         'Accept': 'application/json',
                     },
                 });
-                returnData.push({ json: response });
+                returnData.push({ json: response.data || response });
             }
             if (operation === 'getNonExportedData') {
                 const taskId = this.getNodeParameter('dataTaskId', 0) as string;
@@ -692,7 +683,7 @@ export class Octoparse implements INodeType {
                     });
                     returnData.push({ json: indexedObj });
                 } else {
-                    returnData.push({ json: response });
+                    returnData.push({ json: response.data || response });
                 }
             }
             if (operation === 'markDataExported') {
@@ -708,7 +699,7 @@ export class Octoparse implements INodeType {
                     body: { taskId },
                     json: true,
                 });
-                returnData.push({ json: response });
+                returnData.push({ json: response.data || response });
             }
             if (operation === 'removeData') {
                 const taskId = this.getNodeParameter('dataTaskId', 0) as string;
@@ -723,7 +714,7 @@ export class Octoparse implements INodeType {
                     body: { taskId },
                     json: true,
                 });
-                returnData.push({ json: response });
+                returnData.push({ json: response.data || response });
             }
         }
         return this.prepareOutputData(returnData);
