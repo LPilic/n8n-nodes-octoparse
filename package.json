@@ -34,9 +34,11 @@
   ],
   "n8n": {
     "n8nNodesApiVersion": 1,
-    "credentials": [],
+    "credentials": [
+      "credentials/OctoparseApi.credentials.js"
+    ],
     "nodes": [
-      "dist/nodes/Octoparse/Octoparse.node.js"
+      "nodes/Octoparse/Octoparse.node.js"
     ]
   },
   "devDependencies": {
